@@ -6,18 +6,29 @@ drop the next [1,2] since this would lead to 1 and 2 being in the result 3 times
 which leads to [1,2,3,1,2,3]
 """
 
-# naive method
+from collections import defaultdict
 
+
+# naive method O(n^2)
 def delete_nth_naive(lst, n):
-
 	new_lst = []
-
 	for num in lst:
-
 		if new_lst.count(num) < n:
 			new_lst.append(num)
-
 	return new_lst
+
+
+# O(n) using in-built data structures
+def delete_nth(lst, n):
+	new_lst = []
+	freq = defaultdict(int)
+	for num in lst:
+		if freq[num] < n:
+			new_lst.append(num)
+			freq[num] += 1
+	return new_lst
+
+
 
 
 
