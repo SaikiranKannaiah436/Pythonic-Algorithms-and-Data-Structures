@@ -1,5 +1,5 @@
 from arrays.delete_nth import delete_nth_naive, delete_nth
-
+from arrays.flatten import flatten
 
 import unittest
 
@@ -42,3 +42,18 @@ class TestDeleteNth(unittest.TestCase):
 		self.assertListEqual(delete_nth_naive([1, 2, 3, 1, 1, 2, 1, 2, 3, 3, 2, 4, 5, 3, 1], n=0),
                              [])
 
+
+class TestFlatten(unittest.TestCase):
+
+	def test_flatten(self):
+		nested_list = [2, 1, [3, [4, 5], 6], 7, [8]]
+		flattened = flatten(nested_list)
+		self.assertEqual(flattened, [2, 1, 3, 4, 5, 6, 7, 8])
+
+		nested_list = [[3, [4, 5], 6], 7, [8]]
+		flattened = flatten(nested_list)
+		self.assertEqual(flattened, [3, 4, 5, 6, 7, 8])
+
+		nested_list = [[], [8]]
+		flattened = flatten(nested_list)
+		self.assertEqual(flattened, [8])
